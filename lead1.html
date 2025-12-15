@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tommy Handwerker – Demo</title>
+
+  <style>
+    /* ============ DEMO: Tommy-Handwerker-ähnlicher Look (ohne Original-Assets) ============ */
+    :root{
+      --blue:#1f4f9a;
+      --text:#1c1c1c;
+      --muted:#666;
+      --line:#d9d9d9;
+      --headerH:84px;
+    }
+
+    .th-demo *{ box-sizing:border-box; }
+    .th-demo{
+      font-family: Arial, Helvetica, sans-serif;
+      color:var(--text);
+      margin:0;
+    }
+    .th-demo a{ color:inherit; text-decoration:none; }
+
+    /* ============ HEADER ============ */
+    .th-header{
+      width:100%;
+      background:#fff;
+      border-bottom:1px solid var(--line);
+    }
+    .th-header__inner{
+      height:var(--headerH);
+      display:grid;
+      grid-template-columns: 320px 1fr 64px;
+      align-items:center;
+      gap:12px;
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 18px;
+    }
+
+    .th-brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:260px;
+    }
+    .th-mark{
+      width:62px; height:62px;
+      border-radius:50%;
+      border:2px solid #e6e6e6;
+      position:relative;
+      overflow:hidden;
+      background:#fff;
+    }
+    .th-mark:before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, transparent 0 46%, rgba(0,0,0,.08) 46% 54%, transparent 54%),
+        linear-gradient(#0000 0 45%, rgba(0,0,0,.06) 45% 53%, #0000 53%),
+        linear-gradient(135deg, rgba(31,79,154,.95), rgba(31,79,154,.15));
+      transform:scale(1.08);
+    }
+    .th-brand__text{
+      line-height:1.05;
+    }
+    .th-brand__text .title{
+      font-size:24px;
+      letter-spacing:.5px;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .th-brand__text .tag{
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.2px;
+    }
+
+    /* Navigation */
+    .th-nav{
+      display:flex;
+      justify-content:center;
+      gap:34px;
+      align-items:center;
+    }
+    .th-nav a{
+      font-size:18px;
+      letter-spacing:.5px;
+      color:#3a3a3a;
+      padding:10px 6px 12px;
+      text-transform:uppercase;
+      position:relative;
+    }
+    .th-nav a.active{
+      color:var(--blue);
+      font-weight:700;
+    }
+    .th-nav a.active:after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:-1px;
+      height:3px;
+      background:var(--blue);
+    }
+    .th-sep{
+      color:#9a9a9a;
+      user-select:none;
+    }
+
+    /* Facebook */
+    .th-social{
+      display:flex;
+      justify-content:flex-end;
+    }
+    .th-fb{
+      width:44px; height:44px;
+      border-radius:6px;
+      background:var(--blue);
+      display:grid;
+      place-items:center;
+    }
+    .th-fb svg{ width:22px; height:22px; fill:#fff; }
+
+    /* ============ HERO ============ */
+    .th-hero{
+      width:100%;
+      height:520px;
+      position:relative;
+      overflow:hidden;
+      background:#eee;
+      border-bottom:1px solid #cfcfcf;
+    }
+
+    .th-hero__bg{
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(90deg, rgba(0,0,0,.38), rgba(0,0,0,.16)),
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.18)),
+        url("IMG-20220725-WA0035-768x576.jpg");
+      background-size:cover;
+      background-position:center;
+      transform:scale(1.03);
+    }
+
+    .th-hero__overlay{
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.10));
+    }
+
+    .th-hero__content{
+      position:relative;
+      height:100%;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:0 18px;
+    }
+    .th-hero__content h1{
+      margin:0 0 16px;
+      color:#fff;
+      font-size: clamp(44px, 6vw, 92px);
+      letter-spacing:8px;
+      font-weight:300;
+      text-transform:uppercase;
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+    .th-hero__content h2{
+      margin:0;
+      color:#fff;
+      font-size: clamp(28px, 3.2vw, 64px);
+      font-weight:300;
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+
+    .th-spinner{
+      position:absolute;
+      left:18px;
+      bottom:18px;
+      width:40px; height:40px;
+      opacity:.55;
+    }
+    .th-spinner:before{
+      content:"";
+      display:block;
+      width:100%; height:100%;
+      border-radius:50%;
+      background:
+        conic-gradient(transparent 0 35deg, rgba(255,255,255,.85) 35deg 70deg, transparent 70deg 360deg);
+      animation: spin 1.2s linear infinite;
+    }
+    @keyframes spin{ to{ transform:rotate(360deg);} }
+
+  </style>
+</head>
+
+<body>
+
+<div class="th-demo">
+  <header class="th-header">
+    <div class="th-header__inner">
+      <div class="th-brand">
+        <div class="th-mark"></div>
+        <div class="th-brand__text">
+          <div class="title">TOMMY HANDWERKER</div>
+          <div class="tag">wir schaffen immer das beste</div>
+        </div>
+      </div>
+
+      <nav class="th-nav">
+        <a class="active" href="#">HOME</a>
+        <span class="th-sep">|</span>
+        <a href="#">LEISTUNGEN</a>
+        <span class="th-sep">|</span>
+        <a href="#">ÜBER UNS</a>
+      </nav>
+
+      <div class="th-social">
+        <a class="th-fb" href="#">
+          <svg viewBox="0 0 24 24">
+            <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v9h3v-9h3l1-3h-4v-2c0-.6.4-1 1-1z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="th-hero">
+    <div class="th-hero__bg"></div>
+    <div class="th-hero__overlay"></div>
+
+    <div class="th-hero__content">
+      <div>
+        <h1>TOMMY HANDWERKER</h1>
+        <h2>Ihr Partner im Raum Ismaning</h2>
+      </div>
+    </div>
+
+    <div class="th-spinner"></div>
+  </section>
+</div>
+</body>
+</html>
